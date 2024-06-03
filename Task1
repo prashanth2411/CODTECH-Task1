@@ -1,0 +1,69 @@
+import java.util.Scanner;
+
+public class AdvancedCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Advanced Calculator!");
+
+        boolean continueCalculation = true;
+
+        while (continueCalculation) {
+            double num1, num2;
+            char operator;
+            double result = 0;
+
+            // Input first number
+            System.out.print("Enter the first number: ");
+            num1 = scanner.nextDouble();
+
+            // Input second number
+            System.out.print("Enter the second number: ");
+            num2 = scanner.nextDouble();
+
+            // Input operation
+            System.out.println("Choose the operation (+, -, *, /, %): ");
+            operator = scanner.next().charAt(0);
+
+            // Perform operation
+            switch (operator) {
+                case '+':
+                    result = num1 + num2;
+                    break;
+                case '-':
+                    result = num1 - num2;
+                    break;
+                case '*':
+                    result = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 != 0) {
+                        result = num1 / num2;
+                    } else {
+                        System.out.println("Error: Division by zero!");
+                        continue; // Skip to next iteration if division by zero
+                    }
+                    break;
+                case '%':
+                    result = num1 % num2;
+                    break;
+                default:
+                    System.out.println("Error: Invalid operator!");
+                    continue; // Skip to next iteration if invalid operator
+            }
+
+            // Display result
+            System.out.println("Result: " + result);
+
+            // Ask user if they want to continue
+            System.out.print("Do you want to perform another calculation? (yes/no): ");
+            String choice = scanner.next();
+            if (!choice.equalsIgnoreCase("yes")) {
+                continueCalculation = false;
+            }
+        }
+
+        // Close scanner
+        scanner.close();
+    }
+}
